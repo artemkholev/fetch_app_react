@@ -1,0 +1,76 @@
+/* Основные стили content */
+.content {
+  @apply bg-white text-black p-[3rem] flex-grow;
+}
+
+/* Стили для sidebar */
+.sidebar h1 {
+  @apply flex justify-center text-white mb-[30px];
+}
+
+.sidebar > .forUser {
+  @apply flex flex-col items-start;
+}
+
+.sidebar > .forUser > .user {
+  @apply text-white my-[20px] mx-[20px];
+}
+
+.sidebar > .forUser a {
+  @apply text-white flex flex-col mb-[20px] rounded-[5px] p-[5px];
+  /* border: 1px solid theme('colors.main'); */
+}
+
+.sidebar > .forUser > .catalog-button {
+  @apply flex p-[8px] flex-row items-center gap-[8px] my-[20px] rounded-[4px] cursor-pointer;
+}
+
+.sidebar > .forUser > .catalog-button:focus:active {
+  @apply border-none bg-[#1f971f];
+}
+
+.sidebar > .forUser > .catalog-button > svg {
+  @apply w-[30px] h-[30px] flex items-center;
+}
+
+.sidebar > .forUser > .catalog-button > p {
+  @apply flex justify-center flex-1 text-center font-normal leading-[150%];
+  /* font-family: theme('fontFamily.text'); */
+  /* font-size: theme('fontSize.text'); */
+}
+
+.sidebar > .login {
+  @apply text-white;
+}
+
+.sidebar > .login a {
+  @apply text-white flex flex-col mb-[20px] rounded-[5px] p-[5px];
+  /* border: 1px solid theme('colors.main'); */
+}
+
+/* Адаптив */
+@media (max-width: 1200px) {
+  .content {
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content {
+    grid-template-columns: 1fr 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .content {
+    width: 100vw;
+  }
+}

@@ -1,0 +1,49 @@
+.header {
+  @apply flex py-5 px-[50px] justify-between items-center border-b-2 border-black;
+}
+
+.header a {
+  @apply text-black no-underline;
+}
+
+.header > .logo {
+  @apply flex items-center gap-2.5;
+}
+
+.header > .links {
+  @apply flex justify-end items-center gap-6 h-full self-stretch cursor-pointer;
+}
+
+.header > .links > a > svg {
+  @apply flex mx-auto gap-2;
+}
+
+.header > .links > a > p {
+  @apply text-center font-normal leading-[150%];
+}
+
+.header .burger {
+  @apply hidden;
+}
+
+.burger-theme {
+  @apply flex gap-2.5;
+}
+
+.header > .burger-theme > .isDark {
+  @apply flex flex-col justify-center border-none bg-transparent cursor-pointer;
+}
+
+.header > .burger-theme > .isDark:focus:active {
+  @apply border-none;
+}
+
+@media (max-width: 1000px) {
+  .header .general-info {
+    @apply hidden;
+  }
+
+  .header .burger {
+    @apply block visible;
+  }
+}

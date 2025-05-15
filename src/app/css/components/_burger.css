@@ -1,0 +1,69 @@
+.hidden {
+  @apply invisible;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+/* remove blue outline */
+button:focus {
+  @apply outline-none;
+}
+
+.burger-button {
+  @apply relative block z-[999] border-0 rounded-none bg-transparent;
+  height: 30px;
+  width: 32px;
+  pointer-events: all;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.burger-bar {
+  @apply absolute top-1/2 right-[6px] left-[6px] h-[2px] w-auto;
+  margin-top: -1px;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.burger-bar--1 {
+  transform: translateY(-6px);
+}
+
+.burger-bar--2 {
+  @apply origin-[100%_50%];
+  transform: scaleX(0.8);
+}
+
+.burger-button:hover .burger-bar--2 {
+  @apply scale-x-100;
+}
+
+.no-touchevents .burger-bar--2:hover {
+  @apply scale-x-100;
+}
+
+.burger-bar--3 {
+  transform: translateY(6px);
+}
+
+#burger.active .burger-button {
+  @apply rotate-[-180deg];
+}
+
+#burger.active .burger-bar {
+  @apply bg-white;
+}
+
+#burger.active .burger-bar--1 {
+  @apply rotate-45;
+}
+
+#burger.active .burger-bar--2 {
+  @apply opacity-0;
+}
+
+#burger.active .burger-bar--3 {
+  @apply -rotate-45;
+}

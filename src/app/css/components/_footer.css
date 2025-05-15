@@ -1,0 +1,59 @@
+.footer {
+  @apply flex flex-col items-center justify-center border-t-2 border-black;
+}
+
+.footer > .footer-info {
+  @apply flex gap-[50px] mb-[50px];
+}
+
+.footer > .footer__name-company {
+  @apply flex items-center text-xs;
+}
+
+@media (max-width: 1200px) {
+  .footer {
+    @apply h-full;
+  }
+}
+
+@media (max-width: 1000px) {
+  .footer {
+    @apply h-full;
+  }
+
+  .footer > .footer-info > .footer-links {
+    @apply flex flex-col;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    @apply h-full py-[20%] px-[20%];
+  }
+
+  .footer > .footer-info > .footer-links {
+    @apply flex flex-col items-start;
+  }
+
+  .footer > .footer-info > .footer__contacts {
+    @apply flex flex-col;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer {
+    @apply h-full py-[20%] px-[20%];
+  }
+
+  .footer > .footer-info {
+    @apply flex flex-col;
+  }
+
+  .footer > .footer-info > .footer-links {
+    @apply flex flex-col items-start;
+  }
+
+  .footer > .footer-info > .footer__contacts {
+    @apply flex flex-col;
+  }
+}
