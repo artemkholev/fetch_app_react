@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumbs } from "@/shared/ui";
+import { Breadcrumbs, Sidebar } from "@/shared/ui";
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -8,8 +8,8 @@ interface LayoutProps {
 
 const Content: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex">
-      <aside className="sidebar">
+    <>
+      <Sidebar>
         <h1 className="text-greenyellow">Menu</h1>
         <ul className="sidebar-panel-nav">
           <li className="m-4">
@@ -23,13 +23,13 @@ const Content: React.FC<LayoutProps> = ({ children }) => {
             </Link>
           </li>
         </ul>
-      </aside>
+      </Sidebar>
 
-      <main className="content flex-1">
+      <main className="content h-full flex-1">
         <Breadcrumbs />
         {children}
       </main>
-    </div>
+    </>
   );
 };
 

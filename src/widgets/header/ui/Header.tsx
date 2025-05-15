@@ -25,9 +25,7 @@ const Header: React.FC = () => {
         <p>Посты</p>
       </Link>
 
-      <div className="burger-theme">
-        <Burger className="burger" />
-      </div>
+      <Burger className="burger" />
     </header>
   );
 };
