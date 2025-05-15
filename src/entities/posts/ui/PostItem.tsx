@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { PathNames } from "@/shared/constants/route.constants";
 import type { IPost } from "../lib";
@@ -25,24 +26,39 @@ export const PostItem: React.FC<PostItemProps> = ({ post, removePost }) => {
   };
 
   return (
-    <div
-      className="post"
+    <motion.div
+      whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+      className="post-container bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all duration-300 cursor-pointer"
       onClick={handleLeftClick}
       onContextMenu={handleRightClick}
     >
-      <div className="post__info">
-        <p>{post.id}</p>
-        <div className="post__info-elem">
-          <p>
-            <strong>Название:</strong> {post.title}
-          </p>
-          <p>
-            <strong>Описание:</strong> {post.body}
-          </p>
+      <div className="post__info p-6">
+        <div className="flex items-center mb-4">
+          <span
+            className="min-w-8 min-h-8 rounded-full items-center justify-center text-white font-bold mr-3 text-center align-middle"
+            style={{
+              background: "linear-gradient(90deg, #ff8a00, #e52e71)",
+            }}
+          >
+            {post.id}
+          </span>
+          <h3 className="text-lg font-semibold text-gray-800">{post.title}</h3>
         </div>
+        <div className="post__info-elem">
+          <p className="text-gray-600 line-clamp-3">{post.body}</p>
+        </div>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="mt-4 inline-block px-4 py-2 rounded-lg text-sm font-medium"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(255,138,0,0.1), rgba(229,46,113,0.1))",
+            color: "#e52e71",
+          }}
+        >
+          Читать далее →
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
-
-export default PostItem;

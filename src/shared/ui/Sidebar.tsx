@@ -29,7 +29,11 @@ export const Sidebar: React.FC<{ children: React.ReactNode }> = ({
         <div className="sidebar-backdrop" onClick={togglePanel} />
       )}
 
-      {isPanelOpen && <div className="sidebar-panel">{children}</div>}
+      {isPanelOpen && (
+        <div className="sidebar">
+          <div className="sidebar-panel">{children}</div>
+        </div>
+      )}
     </>
   );
 };

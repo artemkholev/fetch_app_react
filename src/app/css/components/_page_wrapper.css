@@ -1,21 +1,21 @@
 .page_wrapper {
-  @apply grid w-screen h-screen;
+  @apply grid w-screen h-full;
   grid-template-areas:
     "header"
     "content"
     "footer";
-  grid-template-rows: 100px auto 200px;
+  grid-template-rows: 100px auto 400px;
 }
 
 @media (max-width: 1000px) {
   .page_wrapper {
-    grid-template-rows: 100px auto 300px;
+    grid-template-rows: 100px auto 400px;
   }
 }
 
 @media (max-width: 768px) {
   .page_wrapper {
-    grid-template-rows: 100px auto 350px;
+    grid-template-rows: 100px auto 450px;
   }
 }
 

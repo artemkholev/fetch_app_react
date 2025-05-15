@@ -1,76 +1,141 @@
-/* Основные стили content */
+.content-layout {
+  @apply flex min-h-screen bg-gray-50;
+}
+
+/* Sidebar - полная переработка */
+.sidebar {
+  @apply w-72 bg-white shadow-xl fixed h-full border-r border-gray-200 p-6;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-title {
+  @apply text-xl font-semibold mb-8 text-gray-800 flex items-center justify-start;
+}
+
+.sidebar-title::before {
+  content: "";
+  @apply block w-2 h-6 bg-gradient-to-b from-green-400 to-blue-500 rounded-full mr-3;
+}
+
+.sidebar-nav {
+  @apply space-y-1;
+}
+
+.sidebar-link {
+  @apply flex items-center px-4 py-3 rounded-xl text-gray-600 no-underline;
+  transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+  @apply bg-gray-100 text-gray-900;
+  transform: translateX(4px);
+}
+
+.sidebar-link.active {
+  @apply bg-gradient-to-r from-green-50 to-blue-50 text-blue-600 border-l-4 border-blue-500;
+}
+
+.sidebar-link-icon {
+  @apply text-lg mr-3 w-6 text-center;
+  transition: all 0.3s ease;
+}
+
+.sidebar-link:hover .sidebar-link-icon {
+  @apply text-blue-500;
+  transform: scale(1.1);
+}
+
+.sidebar-link-text {
+  @apply flex-1 text-base font-medium;
+}
+
+.sidebar-link-arrow {
+  @apply text-gray-400 text-sm;
+  transition: all 0.3s ease;
+}
+
+.sidebar-link:hover .sidebar-link-arrow {
+  @apply text-blue-500;
+  transform: translateX(3px);
+}
+
+/* Основной контент */
 .content {
-  @apply bg-white text-black p-[3rem] flex-grow;
+  @apply flex-1 ml-72 p-8;
+  min-height: 100vh;
+  transition: margin 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Стили для sidebar */
-.sidebar h1 {
-  @apply flex justify-center text-white mb-[30px];
+.breadcrumbs {
+  @apply mb-8 flex items-center text-sm text-gray-500;
 }
 
-.sidebar > .forUser {
-  @apply flex flex-col items-start;
+.content-children {
+  @apply h-full bg-white rounded-2xl shadow-sm p-8 border border-gray-100;
+  animation: fadeInUp 0.5s ease-out;
 }
 
-.sidebar > .forUser > .user {
-  @apply text-white my-[20px] mx-[20px];
-}
-
-.sidebar > .forUser a {
-  @apply text-white flex flex-col mb-[20px] rounded-[5px] p-[5px];
-  /* border: 1px solid theme('colors.main'); */
-}
-
-.sidebar > .forUser > .catalog-button {
-  @apply flex p-[8px] flex-row items-center gap-[8px] my-[20px] rounded-[4px] cursor-pointer;
-}
-
-.sidebar > .forUser > .catalog-button:focus:active {
-  @apply border-none bg-[#1f971f];
-}
-
-.sidebar > .forUser > .catalog-button > svg {
-  @apply w-[30px] h-[30px] flex items-center;
-}
-
-.sidebar > .forUser > .catalog-button > p {
-  @apply flex justify-center flex-1 text-center font-normal leading-[150%];
-  /* font-family: theme('fontFamily.text'); */
-  /* font-size: theme('fontSize.text'); */
-}
-
-.sidebar > .login {
-  @apply text-white;
-}
-
-.sidebar > .login a {
-  @apply text-white flex flex-col mb-[20px] rounded-[5px] p-[5px];
-  /* border: 1px solid theme('colors.main'); */
-}
-
-/* Адаптив */
-@media (max-width: 1200px) {
-  .content {
-    grid-template-columns: 1fr 280px;
+/* Анимации */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 1000px) {
+/* Микро-интеракции */
+.content-children:hover {
+  @apply shadow-md;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Адаптивность с плавными переходами */
+@media (max-width: 1200px) {
+  .sidebar {
+    @apply w-64;
+  }
   .content {
-    grid-template-columns: 1fr 250px;
+    @apply ml-64;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    @apply w-60 shadow-lg;
+  }
+  .sidebar.active {
+    @apply translate-x-0;
+  }
+  .content {
+    @apply ml-0;
   }
 }
 
 @media (max-width: 768px) {
   .content {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-auto-rows: 100px;
+    @apply p-6;
+  }
+  .content-children {
+    @apply p-6 rounded-xl;
+  }
+  .sidebar {
+    @apply w-72;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .content {
-    width: 100vw;
+    @apply p-4;
+  }
+  .content-children {
+    @apply p-4 rounded-lg;
+  }
+  .sidebar {
+    @apply w-full;
   }
 }

@@ -1,3 +1,3 @@
-import PostsList from "./PostsLists";
+import { PostsList } from "./PostsLists";
 
 export { PostsList };

@@ -22,23 +22,25 @@ const Breadcrumbs: React.FC = () => {
   }, [location]);
 
   return (
-    <div className="breadcrumbs-wrapper">
-      {breadcrumbs.map((breadcrumb, index) => (
-        <div key={index} className="breadcrumbs">
-          {breadcrumb.link ? (
-            <Link
-              to={{
-                pathname: breadcrumb.link,
-                search: location.search,
-              }}
-            >
-              {breadcrumb.title + "/"}
-            </Link>
-          ) : (
-            <p className="lastTitle">{breadcrumb.title}</p>
-          )}
-        </div>
-      ))}
+    <div className="breadcrumbs">
+      <div className="breadcrumbs-wrapper">
+        {breadcrumbs.map((breadcrumb, index) => (
+          <div key={index} className="breadcrumbs">
+            {breadcrumb.link ? (
+              <Link
+                to={{
+                  pathname: breadcrumb.link,
+                  search: location.search,
+                }}
+              >
+                {breadcrumb.title + "/"}
+              </Link>
+            ) : (
+              <p className="lastTitle">{breadcrumb.title}</p>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

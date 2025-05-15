@@ -11,7 +11,7 @@
 
 /* Обертка пагинации */
 .containerPosts > .page__wrapper {
-  @apply flex mt-[30px];
+  @apply flex;
 }
 
 /* Кнопки пагинации */

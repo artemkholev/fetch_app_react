@@ -12,11 +12,11 @@
 /* Фон сайдбара */
 .sidebar-backdrop {
   @apply w-full h-full fixed top-0 left-0 cursor-pointer;
-  background-color: rgba(19, 15, 64, 0.4);
+  background-color: rgba(107, 107, 107, 0.4);
 }
 
 /* Панель сайдбара */
 .sidebar-panel {
-  @apply overflow-y-auto fixed bg-[#444444] left-0 top-0 h-full z-[999] w-[300px];
+  @apply overflow-y-auto fixed bg-[#c3cfe2] left-0 top-0 h-full z-[999] w-[500px];
   padding: 3rem 40px 2rem 40px;
 }

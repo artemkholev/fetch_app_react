@@ -1,69 +1,59 @@
-.hidden {
-  @apply invisible;
-}
-
-button {
-  @apply cursor-pointer;
-}
-
-/* remove blue outline */
-button:focus {
-  @apply outline-none;
-}
-
+/* Базовые стили для бургер-кнопки */
 .burger-button {
-  @apply relative block z-[999] border-0 rounded-none bg-transparent;
-  height: 30px;
+  @apply relative z-50 block cursor-pointer;
   width: 32px;
-  pointer-events: all;
-  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 24px;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
+/* Стили для полосок бургера */
 .burger-bar {
-  @apply absolute top-1/2 right-[6px] left-[6px] h-[2px] w-auto bg-black;
-  margin-top: -1px;
-  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
-    opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
-    background-color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  @apply absolute block h-[2px] w-full bg-black;
+  left: 0;
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 
 .burger-bar--1 {
-  transform: translateY(-6px);
+  top: 0;
 }
 
 .burger-bar--2 {
-  @apply origin-[100%_50%];
-  transform: scaleX(0.8);
-}
-
-.burger-button:hover .burger-bar--2 {
-  @apply scale-x-100;
-}
-
-.no-touchevents .burger-bar--2:hover {
-  @apply scale-x-100;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .burger-bar--3 {
-  transform: translateY(6px);
+  bottom: 0;
 }
 
-#burger.active .burger-button {
-  @apply rotate-[-180deg];
+/* Состояние активного бургера (крестик) */
+.burger-button.active .burger-bar--1 {
+  transform: translateY(11px) rotate(45deg);
 }
 
-#burger.active .burger-bar {
-  @apply bg-black;
+.burger-button.active .burger-bar--2 {
+  opacity: 0;
 }
 
-#burger.active .burger-bar--1 {
-  @apply rotate-45;
+.burger-button.active .burger-bar--3 {
+  transform: translateY(-11px) rotate(-45deg);
 }
 
-#burger.active .burger-bar--2 {
-  @apply opacity-0;
+/* Эффекты при наведении */
+.burger-button:hover .burger-bar--2 {
+  transform: translateY(-50%) scaleX(0.8);
 }
 
-#burger.active .burger-bar--3 {
-  @apply -rotate-45;
+/* Гарантируем видимость */
+.burger-container {
+  @apply fixed top-6 right-6 z-[999] md:hidden;
+}
+
+/* Для темной темы (опционально) */
+.dark .burger-bar {
+  @apply bg-white;
 }
