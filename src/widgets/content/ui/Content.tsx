@@ -8,7 +8,7 @@ interface LayoutProps {
 }
 
 const Content: React.FC<LayoutProps> = ({ children }) => {
-  const { isPanelOpen, togglePanel } = useSidebar();
+  const { togglePanel } = useSidebar();
   const location = useLocation();
 
   // Проверка активного пути
@@ -16,28 +16,6 @@ const Content: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="content-layout bg-gray-50 min-h-screen flex">
-      {/* Mobile sidebar toggle */}
-      <button
-        onClick={togglePanel}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all"
-      >
-        <div
-          className={`w-6 h-0.5 bg-gray-700 mb-1.5 transition-all ${
-            isPanelOpen ? "rotate-45 translate-y-2" : ""
-          }`}
-        ></div>
-        <div
-          className={`w-6 h-0.5 bg-gray-700 mb-1.5 transition-all ${
-            isPanelOpen ? "opacity-0" : ""
-          }`}
-        ></div>
-        <div
-          className={`w-6 h-0.5 bg-gray-700 transition-all ${
-            isPanelOpen ? "-rotate-45 -translate-y-2" : ""
-          }`}
-        ></div>
-      </button>
-
       <Sidebar>
         <h1 className="sidebar-title text-2xl font-bold mb-8 text-gray-800 border-b pb-4 border-gray-200">
           <span className="text-blue-600">Nusly</span>AR

@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const API_URL = "https://jsonplaceholder.typicode.com/";
 
 async function fetchRequest(
   url: string,
   options: {
     method?: string;
-    params?: Record<string, never>;
-    data?: never;
+    params?: Record<string, any>;
+    data?: any;
     headers?: Record<string, string>;
   } = {}
 ) {
@@ -60,8 +61,8 @@ function apiFetch(
   url: string,
   config?: {
     method?: string;
-    params?: Record<string, never>;
-    data?: never;
+    params?: Record<string, any>;
+    data?: any;
     headers?: Record<string, string>;
   }
 ) {
@@ -70,14 +71,14 @@ function apiFetch(
 
 apiFetch.get = function (
   url: string,
-  config?: { params?: Record<string, never> }
+  config?: { params?: Record<string, any> }
 ) {
   return fetchRequest(url, { ...config, method: "GET" });
 };
 
 apiFetch.post = function (
   url: string,
-  data?: never,
+  data?: any,
   config?: { headers?: Record<string, string> }
 ) {
   return fetchRequest(url, { ...config, method: "POST", data });
@@ -85,7 +86,7 @@ apiFetch.post = function (
 
 apiFetch.put = function (
   url: string,
-  data?: never,
+  data?: any,
   config?: { headers?: Record<string, string> }
 ) {
   return fetchRequest(url, { ...config, method: "PUT", data });

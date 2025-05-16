@@ -66,7 +66,7 @@ const HomePage: React.FC = () => {
         </motion.p>
 
         {/* Анимированные фичи */}
-        <div className="max-w-4xl mx-auto mb-20 relative h-64">
+        <div className="max-w-4xl mx-auto mb-20 h-64">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeFeature}
@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5 }}
-              className={`absolute inset-0 bg-gradient-to-br ${features[activeFeature].color} rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center text-white`}
+              className={`bg-gradient-to-br ${features[activeFeature].color} rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center text-white`}
             >
               <div className="mb-4">{features[activeFeature].icon}</div>
               <h2 className="text-2xl font-bold mb-2">

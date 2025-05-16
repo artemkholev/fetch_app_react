@@ -16,7 +16,11 @@
 }
 
 /* Панель сайдбара */
+.sidebar {
+  @apply z-[1000];
+}
+
 .sidebar-panel {
-  @apply overflow-y-auto fixed bg-[#c3cfe2] left-0 top-0 h-full z-[999] w-[500px];
+  @apply overflow-y-auto fixed bg-[#c3cfe2] left-0 top-0 h-full w-[250px];
   padding: 3rem 40px 2rem 40px;
 }

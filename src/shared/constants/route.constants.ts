@@ -6,5 +6,5 @@ export const Links = Object.freeze({
 export const PathNames = Object.freeze({
   HOME: 'home',
   POSTS: 'posts',
-  POST: 'post',
+  POST: 'post/:id',
 });

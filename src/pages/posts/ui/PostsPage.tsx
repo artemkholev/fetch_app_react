@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { PostsList } from "@/features/posts-lists";
 import { Select } from "@/shared/ui";
 import { usePosts } from "@/entities/posts";
-import { FiRefreshCw } from "react-icons/fi";
+import { FiRefreshCw, FiArrowLeft } from "react-icons/fi";
 
 const PostsPage = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   const {
     isLoading,
     isError,
@@ -21,16 +25,45 @@ const PostsPage = () => {
     removePost,
   } = usePosts();
 
-  const changePage = (currentPage: number) => {
-    setPage(currentPage);
+  // Обработчик страниц с базовой валидацией
+  const changePage = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
+      window.scrollTo(0, 0);
+    }
   };
 
+  // Инициализация из URL при первом рендере
   useEffect(() => {
+    const urlPage = Number(searchParams.get("page")) || 1;
+    const urlSort = searchParams.get("sort") || selectOptions[0]?.value;
+
+    if (urlPage !== page) setPage(urlPage);
+    if (urlSort && urlSort !== selected) setSelected(urlSort);
+  }, []); // Только при монтировании
+
+  // Синхронизация URL с состоянием при изменении page/selected
+  useEffect(() => {
+    const params = new URLSearchParams();
+    params.set("page", page.toString());
+    params.set("sort", selected);
+    navigate(`?${params.toString()}`, { replace: true });
+
+    // Загружаем новые данные при изменении
     getPosts();
-  }, [page, getPosts]);
+  }, [page]); // Только эти зависимости
 
   return (
-    <div className="containerPosts max-w-6xl mx-auto px-4 py-8">
+    <>
+      {/* Кнопка назад для мобильных устройств */}
+      <button
+        onClick={() => navigate(-1)}
+        className="md:hidden flex items-center mb-6 text-gray-600 hover:text-gray-900"
+      >
+        <FiArrowLeft className="mr-2" />
+        Назад
+      </button>
+
       {/* Анимированный индикатор загрузки */}
       <AnimatePresence>
         {isLoading && (
@@ -118,8 +151,8 @@ const PostsPage = () => {
       {isError && (
         <div className="p-4 rounded-lg bg-red-50 text-red-600 mb-8">
           Ошибка загрузки. Пожалуйста, попробуйте перезагрузить страницу. (Если
-          списки постов не подгрузились, проблема на стороне сервера, откуда
-          беру данные, перезагрузка страницы должна решить проблему) -
+          списки постов не подгрузились пробема на стороне сервака, откуда беру
+          данные, презагрузка страницы должна решить проблему) -
           https://jsonplaceholder.typicode.com/
         </div>
       )}
@@ -132,25 +165,53 @@ const PostsPage = () => {
           />
 
           {totalPages > 1 && (
-            <div className="page__wrapper flex justify-center mt-12">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (pagePath) => (
-                  <div
-                    key={pagePath}
-                    className={`navigation-pages mx-1 ${
-                      page === pagePath ? "current-page" : ""
-                    }`}
-                    onClick={() => changePage(pagePath)}
-                  >
-                    {pagePath}
-                  </div>
-                )
-              )}
+            <div className="flex justify-center mt-12">
+              <button
+                onClick={() => changePage(Math.max(1, page - 1))}
+                disabled={page === 1}
+                className="px-4 py-2 mx-1 rounded-lg disabled:opacity-50"
+              >
+                Назад
+              </button>
+
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (page <= 3) {
+                  pageNum = i + 1;
+                } else if (page >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = page - 2 + i;
+                }
+                return pageNum;
+              }).map((pagePath) => (
+                <button
+                  key={pagePath}
+                  onClick={() => changePage(pagePath)}
+                  className={`px-2 py-1 mx-1 rounded-lg ${
+                    page === pagePath
+                      ? "bg-gradient-to-r from-orange-500 to-pink-600 text-white"
+                      : "bg-gray-100 hover:bg-gray-200"
+                  }`}
+                >
+                  {pagePath}
+                </button>
+              ))}
+
+              <button
+                onClick={() => changePage(Math.min(totalPages, page + 1))}
+                disabled={page === totalPages}
+                className="px-4 py-2 mx-1 rounded-lg disabled:opacity-50"
+              >
+                Вперед
+              </button>
             </div>
           )}
         </>
       )}
-    </div>
+    </>
   );
 };
 

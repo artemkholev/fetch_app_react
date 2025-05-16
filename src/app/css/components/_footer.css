@@ -10,7 +10,7 @@
 }
 
 .footer-info {
-  @apply flex gap-12 mb-12 flex-wrap justify-center;
+  @apply flex gap-12 mb-6 flex-wrap justify-center;
 }
 
 .footer-links,

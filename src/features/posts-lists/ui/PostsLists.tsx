@@ -1,4 +1,3 @@
-// PostsList.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import { PostItem, type IPost } from "@/entities/posts";

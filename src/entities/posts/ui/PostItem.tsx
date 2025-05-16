@@ -32,8 +32,8 @@ export const PostItem: React.FC<PostItemProps> = ({ post, removePost }) => {
       onClick={handleLeftClick}
       onContextMenu={handleRightClick}
     >
-      <div className="post__info p-6">
-        <div className="flex items-center mb-4">
+      <div className="post__info p-4">
+        <div className="flex items-center mb-2">
           <span
             className="min-w-8 min-h-8 rounded-full items-center justify-center text-white font-bold mr-3 text-center align-middle"
             style={{
@@ -45,7 +45,7 @@ export const PostItem: React.FC<PostItemProps> = ({ post, removePost }) => {
           <h3 className="text-lg font-semibold text-gray-800">{post.title}</h3>
         </div>
         <div className="post__info-elem">
-          <p className="text-gray-600 line-clamp-3">{post.body}</p>
+          <p className="text-gray-600">{post.body}</p>
         </div>
         <motion.div
           whileHover={{ scale: 1.05 }}

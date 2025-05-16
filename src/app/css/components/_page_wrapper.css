@@ -1,5 +1,5 @@
 .page_wrapper {
-  @apply grid w-screen h-full;
+  @apply grid w-full h-full;
   grid-template-areas:
     "header"
     "content"

@@ -1,5 +1,5 @@
 .content-layout {
-  @apply flex min-h-screen bg-gray-50;
+  @apply flex h-full bg-gray-50;
 }
 
 /* Sidebar - полная переработка */
@@ -61,7 +61,7 @@
 
 /* Основной контент */
 .content {
-  @apply flex-1 ml-72 p-8;
+  @apply flex-1 p-8;
   min-height: 100vh;
   transition: margin 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -123,9 +123,6 @@
   .content-children {
     @apply p-6 rounded-xl;
   }
-  .sidebar {
-    @apply w-72;
-  }
 }
 
 @media (max-width: 480px) {
@@ -134,8 +131,5 @@
   }
   .content-children {
     @apply p-4 rounded-lg;
-  }
-  .sidebar {
-    @apply w-full;
   }
 }
